@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <h1> TODO List with VUE.JS</h1>
+  <h2> My tasks</h2>
   <div class="todo-input">
         <input type="text" id="task" v-model="task" name="task" placeholder="enter your task here" class="add-input">
         <button class="add-btn" type="button" v-on:click="addTodo()">+</button>
@@ -12,8 +12,8 @@
       <span class="task-check-2"><i class="fa fa-check-circle" style="font-size:25px;color:#1FE9B7"></i> </span>
     </div>-->
 
-    <div class="todo-task" v-for="(todo, index) in todos" :key="index" v-bind:class="{ 'task-done': todo.checked }">
-      {{todo.task}}
+    <div class="todo-task" v-for="(todo, index) in todos" :key="index" >
+     <div class="todo-text" v-bind:class="{ 'task-done': todo.checked }">{{todo.task}} </div>
       <span class="task-delete" v-on:click="removeTodo(index)"><i class="fa fa-trash" style="font-size:25px;color:#4471D2"></i> </span>
       <span class="task-check" v-bind:class="{ 'show-done': todo.checked }" ><i class="fa fa-check-circle" style="font-size:25px;color:#1FE9B7"></i> </span>
       <span class="task-check" v-bind:class="{ 'add-mark': !todo.checked }" v-on:click="addDone(todo.task)" ><i class="fa fa-circle-o" style="font-size:25px;color:#1FE9B7"></i> </span>
@@ -29,15 +29,15 @@ export default {
   data: function () {
     const list = [
       {
-        'task': 'minivan dhjcsbdh djsbbcds jdsbch',
+        'task': 'Morning run',
         'checked': true
       },
       {
-        'task': 'bajjj nnnnh njnnkjkjkkk',
+        'task': 'Meeting with collegues',
         'checked': false
       },
       {
-        'task': 'ooooooooooooooooooooooooo',
+        'task': 'Renew gym membership',
         'checked': false
       }
     ]
@@ -52,7 +52,7 @@ export default {
         'checked': false
       }
       list.push(obj)
-      console.log(list)
+      this.task = null
     }
     function addDone (task) {
       console.log('index ', task)
@@ -95,11 +95,14 @@ a {
   color: #42b983;
 }
 .container{
-  background: #EBF1F4;
-  width: 60%;
+  border: 1px solid #dadce0;
+  width: 100%;
   display: block;
   margin: auto;
   padding: 10px;
+  border-radius: 8px;
+  margin-top: 60px;
+  max-width: 520px;
 }
 .todo-input{
   display: inline-block;
@@ -134,10 +137,14 @@ a {
   background: #fff;
   border-radius: 35px;
   padding: 15px;
-  width: 417px;
+  width: 90%;
   margin: auto;
   color: #3d5079;
   margin-bottom: 15px;
+}
+.todo-task:hover{
+  transform: scale(.95);
+  transition: all .3s cubic-bezier(.215,.61,.355,1);
 }
 .task-delete{
   float: right;
@@ -159,5 +166,15 @@ a {
 }
 .show-done{
   display: block;
+}
+.todo-text{
+  display: inline-block;
+  width: 70%;
+}
+@media (max-width: 500px) {
+.todo-text{
+  text-align: left;
+  font-size: 14px;
+}
 }
 </style>
