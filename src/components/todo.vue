@@ -6,12 +6,6 @@
         <button class="add-btn" type="button" v-on:click="addTodo()">+</button>
   </div>
 <div class="todo-tasks">
-    <!--<div class="todo-task">
-      lkhjgfd
-      <span class="task-delete"><i class="fa fa-trash" style="font-size:25px;color:#4471D2"></i> </span>
-      <span class="task-check-2"><i class="fa fa-check-circle" style="font-size:25px;color:#1FE9B7"></i> </span>
-    </div>-->
-
     <div class="todo-task" v-for="(todo, index) in todos" :key="index" >
      <div class="todo-text" v-bind:class="{ 'task-done': todo.checked }">{{todo.task}} </div>
       <span class="task-delete" v-on:click="removeTodo(index)"><i class="fa fa-trash" style="font-size:25px;color:#4471D2"></i> </span>
@@ -58,7 +52,6 @@ export default {
       console.log('index ', task)
       var found = list.find(x => x.task === task)
       found.checked = true
-      // console.log('found ', list.find(x => x.task === task))
     }
     return {
       todos: list,
